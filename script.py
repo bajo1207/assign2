@@ -1,5 +1,5 @@
 from scriptutils import *
-
+import copy 
 #Read go annotations
 gotext = open("GOannotations.txt", "r")
 goannotations = []
@@ -80,7 +80,7 @@ for go_category in unique_list_of_goterms:
             contingency_table2[1][0] += 1
         elif not go and not sel:
             contingency_table2[1][1] += 1
-    ccot2 = contingency_table2[:]
+    ccot2 = copy.deepcopy(contingency_table2)
     expected = calculate_chi_expected_values(ccot2)
     print(expected)
     print(contingency_table2)
