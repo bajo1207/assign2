@@ -12,23 +12,23 @@ def create_list(filename):
     file.close()
     return lst
 
-def calculate_chi_expected_values(contingency_table):
-    for n in contingency_table:
+def calculate_chi_expected_values(ct):
+    for n in ct:
         n.append(sum(n))
-    col_totals = [ sum(x) for x in zip(*contingency_table) ]
-    contingency_table.append(col_totals)
+    col_totals = [ sum(x) for x in zip(*ct) ]
+    ct.append(col_totals)
     expected = []
-    for r in range(0, len(contingency_table) - 1):
+    for r in range(0, len(ct) - 1):
         row = []
-        for c in range(0, len(contingency_table) - 1):
-            row.append((contingency_table[r][-1] * contingency_table[-1][c])/contingency_table[-1][-1])
+        for c in range(0, len(ct) - 1):
+            row.append((ct[r][-1] * ct[-1][c])/ct[-1][-1])
         expected.append(row)
     return expected
 
 def calculate_chi_square(observed, expected):
     total = 0
-    for (a,b) in zip(observed, expected):
-        for (o,e) in zip(a,b):
+    for (o,e) in zip(observed, expected):
+        for (o,e) in zip(o,e):
             total += (o-e)**2/e
     return total
 
