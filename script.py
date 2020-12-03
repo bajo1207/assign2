@@ -14,6 +14,8 @@ for line in gotext:
 gotext.close()
 
 #Read all genes
+#There are gene IDs that exist in the GOannotations file that are not contained in allGenes, 
+# therefore we use the ids from the go notations instead
 allgenes = []
 for item in goannotations:
     allgenes.append(item["gene_stab_id"])
@@ -26,18 +28,16 @@ unique_set_of_goterms = set()
 for goterm in goannotations:
     unique_set_of_goterms.add(goterm['go_term'])
 unique_list_of_goterms = list(unique_set_of_goterms)
-print(len(unique_list_of_goterms))
 
 allgenes_boolean_selected = {}
 for gene in allgenes:
     sel = gene in ids2genes
     allgenes_boolean_selected[gene] = sel
 
-"""
-In order to see if there are more occurances of a GO category in the gene selection 
-than expected we need to look at how many genes and at the same time find out if this gene was selected or not
-"""
-f = open('go_with_chi2.csv', 'w')
+#In order to see if there are more occurances of a GO category in the gene selection 
+# than expected we need to look at how many genes and at the same time find out if this gene was selected or not
+
+f = open('go_with_chi2.txt', 'w')
 list_of_go_terms_with_chi2 = []
 for go_category in unique_list_of_goterms:
     go_ids = []
