@@ -12,7 +12,10 @@ def create_list(filename):
     file.close()
     return lst
 
-def calculate_chi_expected_values(ct):
+def calculate_chi_expected_values(contingency_table):
+    ct = []
+    for row in contingency_table:
+        ct.append(row.copy())
     for n in ct:
         n.append(sum(n))
     col_totals = [ sum(x) for x in zip(*ct) ]
