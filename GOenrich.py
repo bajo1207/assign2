@@ -67,7 +67,7 @@ We generate a new file which contains the ID, name and chi-squared value grouped
 The chi-squared value is an indicator of how much that GO term is overrepresented in the selection.
 """
 
-f = open('go_with_chi2.csv', 'w') 
+f = open('go_with_chi2.txt', 'w') 
 list_of_go_terms_with_chi2 = []
 for go_term in unique_list_of_goterms:
     go_term_genes = [] # list of genes associated to a specific GO term
